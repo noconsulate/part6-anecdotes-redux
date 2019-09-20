@@ -36,12 +36,9 @@ export const createAnecdote = (content) => {
 
 const initialState = anecdotesAtStart.map(asObject)
 
-const reducer = (state = initialState, action) => {
-  console.log('state now: ', state)
-  console.log('action', action)
+const anecdoteReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'VOTE':
-      console.log('vote case')
       const id = action.data.id
       const anecdoteToChange = state.find(a => a.id === id)
       const changedAnecdote = {
@@ -52,15 +49,13 @@ const reducer = (state = initialState, action) => {
         a.id !== id ? a : changedAnecdote)
         .sort(sortByVotes)
       case 'NEW':
-        console.log('new case')
         return [...state, action.data]
         .sort(sortByVotes)
 
     default:
-      console.log('reducer default')
   }
 
   return state.sort(sortByVotes)
 }
 
-export default reducer
+export default anecdoteReducer

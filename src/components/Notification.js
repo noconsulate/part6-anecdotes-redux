@@ -1,16 +1,28 @@
 import React from 'react'
 
-const Notification = () => {
+
+
+const Notification = ({store}) => {
   const style = {
     border: 'solid',
     padding: 10,
     borderWidth: 1
   }
+
+  if (store.getState().notification.status === 'on') {
   return (
     <div style={style}>
-      render here notification...
+        {store.getState().notification.message}
     </div>
   )
+} 
+ else {
+  return (
+    <div></div>
+  )
 }
+}
+
+
 
 export default Notification
