@@ -13,8 +13,12 @@ const Anecdotes = ( {store} ) => {
     setTimeout(() => {
       store.dispatch(stopNotification())
     }, 5000)
-    
   }
+
+  const {anecdotes, filter} = store.getState()
+  const anecdotesToShow = anecdotes.filter(anecdote => {
+    anecdote.content.includes(filter)
+  })
 
   return (
     <div>
