@@ -16,13 +16,15 @@ const Anecdotes = ( {store} ) => {
   }
 
   const {anecdotes, filter} = store.getState()
-  const anecdotesToShow = anecdotes.filter(anecdote => {
-    anecdote.content.includes(filter)
-  })
+  const anecdotesToShow = () => {
+    console.log(anecdotes)
+    return anecdotes.filter(anecdote => anecdote.content.includes(filter.toLowerCase()))
+  }
 
   return (
     <div>
-      {store.getState().anecdotes.map(anecdote => 
+      {anecdotesToShow().map(anecdote => 
+      
         <div key={anecdote.id}>
           <div>
             {anecdote.content}

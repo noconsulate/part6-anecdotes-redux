@@ -28,4 +28,4 @@ const render = () => {
 render()
 store.subscribe(render)
 
-store.subscribe(() => console.log(store.getState()))
+//store.subscribe(() => console.log(store.getState()))
