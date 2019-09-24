@@ -1,18 +1,19 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import { createAnecdote } from '../reducers/anecdoteReducer'
 
 const NewAnecdote = (props) => {
   const addNew = (event) => {
     event.preventDefault()
     const anecdote = event.target.anecdote.value
-    props.store.dispatch(createAnecdote(anecdote))
+    props.createAnecdote(anecdote)
   }
 
 
   return (
     <div>
-     <h2> Create New </h2>
-    <form onSubmit={addNew}>
+      <h2> Create New </h2>
+      <form onSubmit={addNew}>
         <div><input name="anecdote" /></div>
         <button type="submit">create</button>
       </form>
@@ -20,4 +21,13 @@ const NewAnecdote = (props) => {
   )
 }
 
-export default NewAnecdote
+const mapDispatchToProps = {
+  createAnecdote,
+}
+
+const ConnectedNewAnecdote = connect(
+  null,
+  mapDispatchToProps,
+)(NewAnecdote)
+
+export default ConnectedNewAnecdote
