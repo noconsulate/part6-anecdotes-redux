@@ -6,7 +6,7 @@ import {changeNotification, stopNotification} from '../reducers/notificationRedu
 const Anecdotes = ( props ) => {
   const handleVote = id => {
     props.voteFor(id)
-    const anecdote = props.anecdotes.find(a => a.id === id)
+    const anecdote = props.visibleAnecdotes.find(a => a.id === id)
     .content
     props.changeNotification(anecdote)
     setTimeout(() => {
@@ -35,6 +35,7 @@ const Anecdotes = ( props ) => {
 }
 
 const anecdotesToShow = ({anecdotes, filter}) => {
+  console.log(anecdotes[0])
   return anecdotes.filter(anecdote => anecdote.content.toLowerCase().includes(filter.toLowerCase()))
 }
 
