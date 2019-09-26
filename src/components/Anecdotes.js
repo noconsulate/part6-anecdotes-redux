@@ -35,8 +35,10 @@ const Anecdotes = ( props ) => {
 }
 
 const anecdotesToShow = ({anecdotes, filter}) => {
-  console.log(anecdotes[0])
-  return anecdotes.filter(anecdote => anecdote.content.toLowerCase().includes(filter.toLowerCase()))
+  console.log(anecdotes)
+  return anecdotes.filter(anecdote => 
+    anecdote.content.toLowerCase().includes(filter.toLowerCase())
+  )
 }
 
 const mapStateToProps = (state) => {

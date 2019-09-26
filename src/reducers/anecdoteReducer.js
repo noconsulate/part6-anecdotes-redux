@@ -1,5 +1,5 @@
+import anecdoteService from '../services/anecdotes'
 
-const getId = () => (100000 * Math.random()).toFixed(0)
 
 const sortByVotes = (a, b) => 
   a.votes < b.votes ? 1 : -1
@@ -7,7 +7,6 @@ const sortByVotes = (a, b) =>
 export const asObject = (anecdote) => {
   return {
       content: anecdote,
-   //   id: getId(),
       votes: 0
   }
 }
@@ -20,16 +19,22 @@ export const voteFor = (id) => {
 }
 
 export const createAnecdote = (content) => {
-  return {
-    type: 'NEW',
-    data: asObject(content)
+  return async dispatch => {
+    const newAnecdote = await anecdoteService.createNew(content)
+    dispatch({
+      type: 'NEW',
+      data: newAnecdote,
+    })
   }
 }
 
 export const initializeAnecdotes = anecdotes => {
-  return {
-    type: 'INIT',
-    data: anecdotes
+  return async dispatch => {
+    const anecdotes = await anecdoteService.getAll()
+    dispatch({
+      type: 'INIT',
+      data: anecdotes,
+    })
   }
 }
 

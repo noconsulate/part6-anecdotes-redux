@@ -28,7 +28,7 @@ const mapDispatchToProps = {
 }
 
 const ConnectedFilter = connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps
 )(Filter)
 

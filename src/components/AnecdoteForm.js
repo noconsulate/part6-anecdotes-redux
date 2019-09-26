@@ -8,9 +8,7 @@ const NewAnecdote = (props) => {
     event.preventDefault()
     const content = event.target.anecdote.value
     event.target.anecdote.value = ''
-    const anecdote = await anecdoteService.createNew(content)
-    props.createAnecdote(anecdote)
-    console.log(anecdote)
+    props.createAnecdote(content)
   }
 
 
