@@ -5,10 +5,10 @@ import {changeNotification, stopNotification} from '../reducers/notificationRedu
 
 const Anecdotes = ( props ) => {
   const handleVote = id => {
-    props.voteFor(id)
+   // props.voteFor(id)
     const anecdote = props.visibleAnecdotes.find(a => a.id === id)
-    .content
-    props.changeNotification(anecdote)
+    props.voteFor(anecdote)
+    props.changeNotification(anecdote.content)
     setTimeout(() => {
       props.stopNotification()
     }, 5000)

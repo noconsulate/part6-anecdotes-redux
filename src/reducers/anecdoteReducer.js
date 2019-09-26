@@ -11,12 +11,29 @@ export const asObject = (anecdote) => {
   }
 }
 
+export const voteFor = anecdote => {
+  return async dispatch => {
+    const newObject = {
+      ...anecdote,
+      votes: anecdote.votes + 1
+    }
+    const response = await anecdoteService.voteFor(anecdote.id, newObject)
+    console.log(response.id)
+    dispatch({
+      type: 'VOTE',
+      data: {id: response.id}
+    })
+  }
+}
+
+/*
 export const voteFor = (id) => {
   return {
     type: 'VOTE',
     data: { id }
   }
 }
+*/
 
 export const createAnecdote = (content) => {
   return async dispatch => {
