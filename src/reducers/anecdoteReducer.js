@@ -1,5 +1,5 @@
 import anecdoteService from '../services/anecdotes'
-
+import {changeNotification, stopNotification} from './notificationReducer'
 
 const sortByVotes = (a, b) => 
   a.votes < b.votes ? 1 : -1
@@ -11,18 +11,26 @@ export const asObject = (anecdote) => {
   }
 }
 
-export const voteFor = anecdote => {
+export const voteFor = (anecdote, delay) => {
   return async dispatch => {
     const newObject = {
       ...anecdote,
       votes: anecdote.votes + 1
     }
     const response = await anecdoteService.voteFor(anecdote.id, newObject)
-    console.log(response.id)
     dispatch({
       type: 'VOTE',
       data: {id: response.id}
     })
+    dispatch({
+      type: 'SET-NOTIFICATION',
+      message: 'you voted ' + response.content
+    })
+    setTimeout(() => {
+      dispatch({
+        type: 'STOP-NOTIFICATION'
+      })
+    }, delay * 1000)
   }
 }
 
